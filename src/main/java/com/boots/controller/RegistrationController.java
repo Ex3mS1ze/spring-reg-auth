@@ -43,7 +43,7 @@ public class RegistrationController {
             return "registration";
         }
 
-        securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
+//        securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
         return "redirect:/";
     }
 }

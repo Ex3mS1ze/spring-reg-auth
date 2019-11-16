@@ -6,6 +6,7 @@
 <head>
     <meta charset="utf-8">
     <title>Log in with your account</title>
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/style.css">
 </head>
 
 <body>
@@ -23,12 +24,13 @@
                 <td>${user.username}</td>
                 <td>${user.password}</td>
                 <td>
-                    <c:forEach items="${user.roles}" var="role">${role.name} </c:forEach>
+                    <c:forEach items="${user.roles}" var="role">${role.name}; </c:forEach>
                 </td>
+                <td><a href="admin/delete/${user.id}">Delete</a></td>
             </tr>
-
         </c:forEach>
     </table>
+    <a href="/">Главная</a>
 </div>
 </body>
 </html>

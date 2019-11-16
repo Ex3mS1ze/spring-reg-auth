@@ -30,6 +30,7 @@
         </div>
         <button type="submit">Зарегистрироваться</button>
     </form:form>
+    <a href="/">Главная</a>
 </div>
 </body>
 </html>

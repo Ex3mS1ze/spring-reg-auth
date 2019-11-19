@@ -4,6 +4,8 @@ import com.boots.entity.Role;
 import com.boots.entity.User;
 import com.boots.repository.RoleRepository;
 import com.boots.repository.UserRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,6 +21,8 @@ import java.util.Optional;
 
 @Service
 public class UserService implements UserDetailsService {
+    private static final Logger LOGGER = LogManager.getLogger(UserService.class);
+
     @PersistenceContext
     private EntityManager em;
     @Autowired
@@ -45,6 +49,12 @@ public class UserService implements UserDetailsService {
     }
 
     public List<User> allUsers() {
+        LOGGER.debug("Find all users");
+        try {
+            int i = 2 / 0;
+        } catch (ArithmeticException ex) {
+            LOGGER.error(ex.getMessage());
+        }
         return userRepository.findAll();
     }
 

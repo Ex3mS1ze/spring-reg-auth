@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="DEBUG">
+    <Properties>
+        <Property name="logPath">./logs</Property>
+    </Properties>
+    <Appenders>
+        <Console name="LogToConsole" target="SYSTEM_OUT">
+          <PatternLayout pattern="%d{ABSOLUTE} %highlight{%-5level} %style{${sys:PID}}{magenta} --- [%15.15t] %style{%-40.40c{-2}}{cyan} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}" disableAnsi="false"/>
+        </Console>
+        <RollingFile name="LogToFile"
+                     fileName="${logPath}/app.log"
+                     filepattern="${logPath}app-%{yyyy-MM-dd}-%i.log">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%15.15t] %-40.40c : %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="1MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="2"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Logger name="com.boots" level="debug" additivity="false">
+            <AppenderRef ref="LogToFile"/>
+            <AppenderRef ref="LogToConsole"/>
+        </Logger>
+        <Root level="info">
+            <AppenderRef ref="LogToConsole"/>
+        </Root>
+    </Loggers>
+</Configuration>

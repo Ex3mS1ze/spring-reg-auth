@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AdminController {
@@ -18,9 +20,13 @@ public class AdminController {
         return "admin";
     }
 
-    @GetMapping("/admin/delete/{userId}")
-    public String  deleteUser(@PathVariable("userId") Long userId, Model model) {
-        userService.deleteUser(userId);
+    @PostMapping("/admin")
+    public String  deleteUser(@RequestParam(required = true, defaultValue = "" ) Long userId,
+                              @RequestParam(required = true, defaultValue = "" ) String action,
+                              Model model) {
+        if (action.equals("delete")){
+            userService.deleteUser(userId);
+        }
         return "redirect:/admin";
     }
 

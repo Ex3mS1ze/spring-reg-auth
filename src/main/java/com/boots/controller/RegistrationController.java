@@ -1,7 +1,6 @@
 package com.boots.controller;
 
 import com.boots.entity.User;
-import com.boots.service.SecurityService;
 import com.boots.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,8 +17,6 @@ public class RegistrationController {
 
     @Autowired
     private UserService userService;
-    @Autowired
-    private SecurityService securityService;
 
     @GetMapping("/registration")
     public String registration(Model model) {
@@ -43,7 +40,6 @@ public class RegistrationController {
             return "registration";
         }
 
-//        securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
         return "redirect:/";
     }
 }
